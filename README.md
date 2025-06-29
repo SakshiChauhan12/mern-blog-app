@@ -103,3 +103,49 @@ backend/
 ├── routes/
 │   └── blogRoutes.js
 └── index.js
+
+
+===========================================================================================
+```
+# hurray we have successfully completed our second phase of the project.
+# Now we have a fully functional backend with CRUD operations for blogs.
+```
+
+### Next Phase
+```
+# Phase 3: React Frontend Development
+
+
+```
+```
+# Setup React App
+Inside your root folder (mern-blog-app):
+
+
+
+npx create-react-app frontend
+cd frontend
+npm start
+
+
+# delete all unnecessary files in the frontend/src folder
+
+
+
+# Install Axios for API calls
+npm install axios
+
+# folder structure of frontend
+src/
+├── components/
+│   └── BlogList.js
+├── App.js
+└── api.js
+
+# We’ve now finished:
+# Phase 3: Frontend Setup + Display Blog List
+
+# You should see the React app running on: http://localhost:3000
+
+
+```
