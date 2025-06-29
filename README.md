@@ -148,4 +148,9 @@ src/
 # You should see the React app running on: http://localhost:3000
 
 
+
+# Phase 4: Add New Blog from UI (Create blog using a form)
+
+firstly we will create a component(form )to take input from the user and then we will send that data to the backend to create a new blog.
+
 ```

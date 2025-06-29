@@ -3,15 +3,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { getBlogs } from "../api"; // Adjust the import path as necessary
 
-const BlogList = () => {
-  const [blogs, setBlogs] = useState([]);
-
-  useEffect(() => {
-    getBlogs()
-      .then((res) => setBlogs(res.data))
-      .catch((err) => console.error("Error fetching blogs:", err));
-  }, []);
-  console.log(blogs);
+const BlogList = ({blogs}) => {
+  
 
   return (
     <>
