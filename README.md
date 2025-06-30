@@ -153,4 +153,27 @@ src/
 
 firstly we will create a component(form )to take input from the user and then we will send that data to the backend to create a new blog.
 
+
+# Phase 5: Delete & Update Blog from UI
+We’ll break this into 2 parts:
+
+ Part 1: Delete Blog
+ # what are the expections
+ we need a button 
+ {on clicking that button-->the blog list should be updated without having that particular blog
+ and it must appear in the ui}
+
+
+| What you want to do                   | How to write it                     |
+| ------------------------------------- | ----------------------------------- |
+| Call a function **without arguments** | `onClick={functionName}`            |
+| Call a function **with arguments**    | `onClick={() => functionName(arg)}` |
+
+
+ Part 2: Update Blog
+# what are the expections
+we need a button
+{on clicking that button-->the blog list should be updated with the updated blog
+and it must appear in the ui}
+
 ```
