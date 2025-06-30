@@ -4,10 +4,18 @@ import { useState, useEffect } from "react";
 import { getBlogs } from "./api";
 import CreateBlog from "./components/CreateBlog";
 import { createBlog } from "./api";
-import { updateBlog } from "./api"; // Import the updateBlog function
+import { updateBlog } from "./api";
+import {BrowserRouter as Router,Routes, Route} from "react-router-dom";
+
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Home from "./pages/Home"; // Import the Home component
+ // Import the Footer component
+// Import the updateBlog function
 // Import the createBlog function
 // Import the CreateBlog component
 // Adjust the import path as necessary
+
 
 function App() {
   const [blogs, setBlogs] = useState([]);
@@ -48,9 +56,13 @@ function App() {
   console.log("Blogs:", blogs);
 
   return (
-    <div className="App">
-      <h1>📝 Blog App</h1>
-      <BlogList
+   
+
+      <Router>
+        <Navbar></Navbar>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+            <Route path="/blogs" element={   <BlogList
         blogs={blogs}
         onBlogChange={fetchBlogs}
         handleUpdate={(blog) => {
@@ -58,7 +70,8 @@ function App() {
           setTitle(blog.title);
           setContent(blog.content);
         }}
-      />
+      />}></Route>
+      <Route path="/create" element={
       <CreateBlog
         title={title}
         setTitle={setTitle}
@@ -66,8 +79,13 @@ function App() {
         setContent={setContent}
         handleSubmit={handleSubmit}
         editBlog={editBlog}
-      />
-    </div>
+      />}></Route>
+
+
+        </Routes>
+        <Footer></Footer>
+      </Router>
+   
   );
 }
 

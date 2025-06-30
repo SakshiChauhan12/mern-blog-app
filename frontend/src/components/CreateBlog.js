@@ -1,7 +1,5 @@
 import React from "react";
-import { createBlog } from "../api";
-import { useState } from "react";
-//why is this prop used
+
 const CreateBlog = ({
   title,
   setTitle,
@@ -11,26 +9,40 @@ const CreateBlog = ({
   editBlog,
 }) => {
   return (
-    <div style={{ marginBottom: "20px" }}>
-      <h2>✍️ Create a New Blog</h2>
+    <div className="max-w-3xl mx-auto mt-10 p-8 bg-white shadow-lg rounded-lg">
+      <h2 className="text-3xl font-bold text-gray-800 mb-6">
+        {editBlog ? "✏️ Update Blog" : "✍️ Create a New Blog"}
+      </h2>
+
       <form onSubmit={handleSubmit}>
+        {/* Title Input */}
         <input
           type="text"
           placeholder="Blog Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          style={{ display: "block", marginBottom: "10px", width: "100%" }}
+          className="w-full p-3 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500"
         />
+
+        {/* Content Textarea */}
         <textarea
-          placeholder="Blog Content"
+          placeholder="Write your blog content here..."
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          rows="4"
-          style={{ display: "block", marginBottom: "10px", width: "100%" }}
+          rows="6"
+          className="w-full p-3 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 resize-none"
         ></textarea>
-        <button type="submit">{editBlog ? "Update" : "CREATE"}</button>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="px-6 py-3 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-all"
+        >
+          {editBlog ? "Update" : "Create"}
+        </button>
       </form>
     </div>
   );
 };
+
 export default CreateBlog;
