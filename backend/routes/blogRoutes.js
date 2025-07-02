@@ -3,14 +3,14 @@
 
 import express from "express";
 import Blog from "../models/blogModel.js"; // Import the Blog model
-
+import { authMiddleware } from "../middleware/authMiddleware.js";
 
 
 const router =express.Router();
 
 // Create a new blog
 //we use async await because when we deal with the database then the operations are asynchronous
-router.post("/",async(req,res)=>{
+router.post("/",authMiddleware,async(req,res)=>{
     try{
         const{title,content}=req.body;
         const newBlog=new Blog({title,content});

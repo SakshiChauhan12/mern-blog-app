@@ -6,6 +6,8 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 // Importing the blog routes
 import router from "./routes/blogRoutes.js";
+// Importing the auth routes
+import authRouter from "./routes/authRoutes.js"; 
 
 //step2--configure dotenv to use environment variables
 dotenv.config();
@@ -18,6 +20,8 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 app.use("/api/blogs",router);
+// Middleware for authentication routes
+app.use("/api/auth", authRouter);
 
 // Step 4: Define a simple route
 app.get("/", (req, res) => {

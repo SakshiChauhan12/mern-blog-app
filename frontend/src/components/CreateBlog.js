@@ -1,4 +1,5 @@
 import React from "react";
+ // Adjust the import path as necessary
 
 const CreateBlog = ({
   title,
@@ -10,6 +11,7 @@ const CreateBlog = ({
 }) => {
   return (
     <div className="max-w-3xl mx-auto mt-10 p-8 bg-white shadow-lg rounded-lg">
+      
       <h2 className="text-3xl font-bold text-gray-800 mb-6">
         {editBlog ? "✏️ Update Blog" : "✍️ Create a New Blog"}
       </h2>

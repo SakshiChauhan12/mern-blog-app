@@ -59,7 +59,7 @@ function App() {
    
 
       <Router>
-        <Navbar></Navbar>
+          <Navbar></Navbar>
         <Routes>
           <Route path="/" element={<Home />}></Route>
             <Route path="/blogs" element={   <BlogList

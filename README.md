@@ -214,3 +214,83 @@ npm install react-router-dom
 ---
 
 > 🚀 Built with ❤️ by Sakshi Chauhan during her MERN learning journey.
+## 🔐 Phase 7: Authentication Backend (JWT + Middleware)
+
+Added user authentication using:
+
+- 🔑 `bcryptjs` – for password hashing  
+- 🔐 `jsonwebtoken` – to generate and verify JWT tokens  
+- 🛡️ Middleware – to protect routes
+
+---
+
+### 📁 Folder Structure
+```
+backend/
+├── controllers/authController.js
+├── middleware/authMiddleware.js
+├── models/userModel.js
+├── routes/authRoutes.js
+├── routes/blogRoutes.js
+└── index.js
+```
+
+---
+
+### ✨ Features
+
+#### ✅ Register (POST `/api/auth/register`)
+- Input: `{ name, email, password }`
+- Checks if user exists → Hashes password → Saves new user
+
+#### ✅ Login (POST `/api/auth/login`)
+- Input: `{ email, password }`
+- Verifies password → Returns JWT token
+
+#### ✅ Protect Routes using Middleware
+- Add `authMiddleware` to routes like:
+```js
+router.post("/", authMiddleware, createBlog);
+```
+
+#### 🧠 Sample Middleware
+```js
+export const authMiddleware = (req, res, next) => {
+  const token = req.headers.authorization;
+  if (!token) return res.status(401).json({ error: "Token required" });
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch {
+    res.status(403).json({ error: "Invalid token" });
+  }
+};
+```
+
+---
+
+### 🧪 Test in Postman
+
+1. **Register:** POST `/api/auth/register`
+```json
+{ "name": "Sakshi", "email": "sakshi@gmail.com", "password": "123456" }
+```
+
+2. **Login:** POST `/api/auth/login`  
+→ Copy token from response
+
+3. **Protected:** POST `/api/blogs` with Header:  
+`Authorization: <paste_token_here>`
+
+---
+
+### 🛠️ .env Sample
+```
+DB=yourMongoURL
+JWT_SECRET=yourSecretKey
+```
+
+---
+
+✅ Done! Authentication backend with JWT protection is now working.
