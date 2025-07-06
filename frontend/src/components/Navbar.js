@@ -1,7 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useUser } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+    const { isLoggedIn, logout } = useUser();
+  const navigate = useNavigate();
+  const handleLogout =()=>{
+    logout();
+    navigate("/");
+  }
+
   return (
     <nav className="bg-black shadow-md px-6 py-4 flex justify-between items-center">
       {/* Logo/Brand */}
@@ -29,6 +38,15 @@ const Navbar = () => {
         >
           Create Blog
         </Link>
+        {isLoggedIn ? (
+          <button onClick={handleLogout} className="hover:text-yellow-300">
+             Logout
+          </button>
+        ) : (
+          <Link to="/login" className="hover:text-yellow-300">
+             Login
+          </Link>
+        )}
       </div>
     </nav>
   );

@@ -294,3 +294,101 @@ JWT_SECRET=yourSecretKey
 ---
 
 ✅ Done! Authentication backend with JWT protection is now working.
+## ✅ Phase 8: Frontend Authentication + Login/Logout System
+
+---
+
+### 🔐 1. Signup & Login Functionality
+
+We added **user authentication from frontend** using React, Axios, and form handling.
+
+#### 📄 Pages Created:
+- `Signup.js` – to register a new user
+- `Login.js` – to log in with existing credentials
+
+#### 📦 Axios API File:
+📁 `src/api/auth.js`
+
+```js
+import axios from "axios";
+
+const API = axios.create({ baseURL: "http://localhost:5000/api/auth" });
+
+export const signupUser = (formData) => API.post("/register", formData);
+export const loginUser = (formData) => API.post("/login", formData);
+```
+
+#### 📋 Form Details:
+- `useState()` was used to handle form input
+- On form submission:
+  - We called `signupUser()` or `loginUser()`
+  - If successful:
+    - **Token was stored in `localStorage`**
+    - **Redirected to homepage**
+
+---
+
+### 🧠 2. Login/Logout State Handling using Context API
+
+To handle login/logout status globally, we used **React Context API**.
+
+#### ✅ Context Created:  
+📁 `src/context/UserContext.js`
+
+- `isLoggedIn` → holds login state (`true/false`)
+- `login()` → sets `isLoggedIn = true`
+- `logout()` → removes token + sets `isLoggedIn = false`
+
+```js
+const token = localStorage.getItem("token");
+setIsLoggedIn(!!token);
+```
+
+#### 🔄 Used in:
+- `Login.js` and `Signup.js`: called `login()` after success
+- `Navbar.js`: dynamically switched between **Login ↔ Logout** based on login state
+
+---
+
+### 🚪 3. Logout Functionality
+
+- Clicking **Logout**:
+  - Removes token from localStorage
+  - Updates login state using `logout()` from context
+  - Redirects to home
+
+#### 🧭 Example in Navbar:
+
+```js
+{isLoggedIn ? (
+  <button onClick={handleLogout}>🚪 Logout</button>
+) : (
+  <Link to="/login">🔑 Login</Link>
+)}
+```
+
+---
+
+### 🎯 Final Output
+
+| Feature            | Status  |
+|--------------------|---------|
+| Signup Page        | ✅ Done |
+| Login Page         | ✅ Done |
+| Token Saved        | ✅ Done |
+| Navbar Toggle      | ✅ Done |
+| Logout Logic       | ✅ Done |
+| Context for Auth   | ✅ Done |
+
+---
+
+### 🧪 How to Test
+
+1. Sign up a new user → get redirected to login  
+2. Login → token saved → Navbar shows **Logout**  
+3. Click **Logout** → token removed → Navbar shows **Login**
+
+---
+
+🧩 Authentication system on frontend is now complete!  
+Next step: **Role-Based Access Control (RBAC)** for protected routes and admin roles.

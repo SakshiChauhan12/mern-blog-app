@@ -1,5 +1,5 @@
 import React from "react";
-import { deleteBlog } from "../api"; // Adjust the import path as necessary
+import { deleteBlog } from "../api/api"; // Adjust the import path as necessary
 
 const BlogList = ({ blogs, onBlogChange, handleUpdate }) => {
   const handleDelete = async (id) => {

@@ -1,11 +1,14 @@
 import "./App.css";
 import BlogList from "./components/BlogList";
 import { useState, useEffect } from "react";
-import { getBlogs } from "./api";
+import { getBlogs } from "./api/api";
 import CreateBlog from "./components/CreateBlog";
-import { createBlog } from "./api";
-import { updateBlog } from "./api";
+import { createBlog } from "./api/api";
+import { updateBlog } from "./api/api";
 import {BrowserRouter as Router,Routes, Route} from "react-router-dom";
+import Login from "./components/Login";
+import Signup from "./components/Signup";  // Import the Signup component
+ // Import the Login component
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -80,9 +83,11 @@ function App() {
         handleSubmit={handleSubmit}
         editBlog={editBlog}
       />}></Route>
-
+ <Route path="/login" element={<Login></Login>}> </Route>
+ <Route path="/signup" element={<Signup></Signup>}> </Route>
 
         </Routes>
+       
         <Footer></Footer>
       </Router>
    
